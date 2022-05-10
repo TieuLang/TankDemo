@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Complete
 {
-    public class ShotGunFireStyle :FireStyleComp
+    public class ShotGunFireStyle : FireStyleComp
     {
         public override void OnDoneTrigger()
         {

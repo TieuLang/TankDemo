@@ -9,33 +9,25 @@ namespace Complete
     {
         public int m_NumBullet = 3;
         public ShellAbility m_ShellType;
+        public float bulletStartSpeed = 3;
 
-        public virtual void Update(FireStyleComp fireStyleComp)
+        public virtual void DoUpdate(FireStyleComp fireStyleComp)
         {
             // Non
         }
 
-        protected virtual void FireOneBullet1(Transform transform, float force)
+        protected virtual void FireOneBullet1(Transform transform)
         {
-            //m_ShellType.Init(transform,force);
             var bullet = Instantiate(m_ShellType.m_Shell, transform.position, transform.rotation);
             if (bullet.TryGetComponent<Rigidbody>(out var rigid))
-            {
-                rigid.velocity = transform.forward * force;
-                //rigid.AddForce(fireDir*force);
-            }
+                rigid.velocity = transform.forward * bulletStartSpeed;
         }
 
-        protected virtual void FireOneBullet(Vector3 startFirePos, Vector3 fireDir, float force )
+        protected virtual void FireOneBullet(Vector3 startFirePos, Vector3 fireDir)
         {
-            //fireDir = new Vector3(90,0,90);
-            Debug.Log("fireDir: "+fireDir.ToString());
             var bullet = Instantiate(m_ShellType.m_Shell, startFirePos, Quaternion.Euler(fireDir));
             if (bullet.TryGetComponent<Rigidbody>(out var rigid))
-            {
-                rigid.velocity = fireDir * force;
-                //rigid.AddForce(fireDir*force);
-            }
+                rigid.velocity = fireDir * bulletStartSpeed;
         }
     }
 }

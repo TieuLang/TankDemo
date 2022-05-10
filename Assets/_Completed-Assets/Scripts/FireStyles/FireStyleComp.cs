@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace Complete
 {
@@ -11,19 +13,21 @@ namespace Complete
         private float currentReloadTime = 0;
         internal int bulletFired  = 0;
         internal bool IsReady = true;
-
         public Transform FireTranPos;
-        public float force = 10;
+
+        public UnityEvent OnTriggerEvent;
+        public UnityEvent OnFinishTriggerEvent;
+
+        public void InitWeapon(Transform FireTranPos)
+        {
+            this.FireTranPos = FireTranPos;
+        }
 
         public void Update()
         {
-            //Debug.Log("IsReady: "+IsReady.ToString());
             if (!IsReady)
-            {
-                //Debug.Log("Start fired");
-                gunAbility.Update(this);
-            }
-        } 
+                gunAbility.DoUpdate(this);
+        }
 
         public void OnGunFireTrigger()
         {
@@ -32,14 +36,15 @@ namespace Complete
             IsReady = false;
             currentReloadTime = reloadTime;
             bulletFired = 0;
-            //Debug.Log("reload");
+            OnTriggerEvent?.Invoke();
         }
+
 
         public virtual void OnDoneTrigger()
         {
-            //bulletFired = 0;
             IsReady = true;
-            //Debug.Log("readly when done: " + IsReady.ToString());
+            OnFinishTriggerEvent?.Invoke();
         }
     }
+
 }

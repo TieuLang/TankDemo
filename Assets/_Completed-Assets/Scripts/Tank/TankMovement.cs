@@ -20,6 +20,8 @@ namespace Complete
         private float m_OriginalPitch;              // The pitch of the audio source at the start of the scene.
         private ParticleSystem[] m_particleSystems; // References to all the particles systems used by the Tanks
 
+        private bool IsLockTurn;
+
         private void Awake ()
         {
             m_Rigidbody = GetComponent<Rigidbody> ();
@@ -112,6 +114,10 @@ namespace Complete
         {
             // Adjust the rigidbodies position and orientation in FixedUpdate.
             Move ();
+
+            if (IsLockTurn)
+                return;
+
             Turn ();
         }
 
@@ -136,6 +142,16 @@ namespace Complete
 
             // Apply this rotation to the rigidbody's rotation.
             m_Rigidbody.MoveRotation (m_Rigidbody.rotation * turnRotation);
+        }
+
+        public void LockTurn()
+        {
+            IsLockTurn = true;
+        }
+
+        public void EnableTurn()
+        {
+            IsLockTurn = false;
         }
     }
 }

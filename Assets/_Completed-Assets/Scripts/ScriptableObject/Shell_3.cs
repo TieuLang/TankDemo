@@ -12,7 +12,7 @@ namespace Complete
         [SerializeField]
         private float m_MaxSpeed;
         public float m_TimeForSpeed;
-        public AccelerationScript buff_Speed =new AccelerationScript();
+        public AccelerationComp buff_Speed =new AccelerationComp();
         public override void CalculateDamage()
         {
             base.CalculateDamage();
