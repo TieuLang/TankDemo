@@ -57,25 +57,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\FireInputHandle.cs" />
-    <Compile Include="Assets\SimpleSoundComp.cs" />
+    <Compile Include="Assets\Simpled3DSoundComp.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\Camera\CameraControl.cs" />
+    <Compile Include="Assets\_Completed-Assets\Scripts\Camera\FaceToDirection.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\FireStyles\FireStyleComp.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\FireStyles\ShotGunFireStyle.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\FireStyles\WaveFireStyle.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\Managers\TankManager.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\ScriptableObject\ColtAbility.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\ScriptableObject\GunAbility.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\ScriptableObject\ShellAbility.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\ScriptableObject\Shell_1.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\ScriptableObject\Shell_2.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\ScriptableObject\Shell_3.cs" />
-    <Compile Include="Assets\_Completed-Assets\Scripts\ScriptableObject\ShotGunAbility.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\Shell\Laser.cs" />
+    <Compile Include="Assets\_Completed-Assets\Scripts\Shell\ScriptableObject\ColtAbility.cs" />
+    <Compile Include="Assets\_Completed-Assets\Scripts\Shell\ScriptableObject\GunAbility.cs" />
+    <Compile Include="Assets\_Completed-Assets\Scripts\Shell\ScriptableObject\ShellAbility.cs" />
+    <Compile Include="Assets\_Completed-Assets\Scripts\Shell\ScriptableObject\Shell_1.cs" />
+    <Compile Include="Assets\_Completed-Assets\Scripts\Shell\ScriptableObject\Shell_2.cs" />
+    <Compile Include="Assets\_Completed-Assets\Scripts\Shell\ScriptableObject\Shell_3.cs" />
+    <Compile Include="Assets\_Completed-Assets\Scripts\Shell\ScriptableObject\ShotGunAbility.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\Shell\ShellExplosion.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\ShellStyle\AccelerationComp.cs" />
+    <Compile Include="Assets\_Completed-Assets\Scripts\Tank\Eventv.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\Tank\TankHealth.cs" />
+    <Compile Include="Assets\_Completed-Assets\Scripts\Tank\TankHealth\TankHealthData.cs" />
+    <Compile Include="Assets\_Completed-Assets\Scripts\Tank\TankHealth\TankHealthManager.cs" />
+    <Compile Include="Assets\_Completed-Assets\Scripts\Tank\TankHealth\TankHealthSound.cs" />
+    <Compile Include="Assets\_Completed-Assets\Scripts\Tank\TankHealth\TankHealthUI.cs" />
+    <Compile Include="Assets\_Completed-Assets\Scripts\Tank\TankHealth\tanksound.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\Tank\TankMovement.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\Tank\TankShooting.cs" />
     <Compile Include="Assets\_Completed-Assets\Scripts\UI\UIDirectionControl.cs" />
@@ -274,6 +281,9 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Purchasing">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.Purchasing.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -285,6 +295,9 @@
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Analytics">
+      <HintPath>Library\ScriptAssemblies\Analytics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
@@ -298,6 +311,9 @@
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements.Editor">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
       <HintPath>Library\ScriptAssemblies\UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
     </Reference>
@@ -306,9 +322,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>Library\PackageCache\com.unity.purchasing@2.0.6\UnityEngine.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2019.4.28f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -660,9 +673,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="UnityEngine.Monetization.Player.csproj">
+      <Project>{BC416C22-EA29-4F99-4852-C7825A189C50}</Project>
+      <Name>UnityEngine.Monetization.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.Purchasing.Stores.Player.csproj">
+      <Project>{6D26D6DB-146B-AF31-A8D0-4E16428F9271}</Project>
+      <Name>UnityEngine.Purchasing.Stores.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Purchasing.Common.Player.csproj">
+      <Project>{410C6E24-CFE5-5D04-9014-11A80A106805}</Project>
+      <Name>Purchasing.Common.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.Advertisements.Player.csproj">
+      <Project>{34E9D105-C350-297F-C0B7-701E40F36C03}</Project>
+      <Name>UnityEngine.Advertisements.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.Purchasing.Player.csproj">
+      <Project>{63EEF0D5-BFE2-422A-B63E-89363D75701B}</Project>
+      <Name>UnityEngine.Purchasing.Player</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Timeline.Player.csproj">
       <Project>{CCA8D5CB-823B-DFF1-DF11-F93B50036E6A}</Project>
       <Name>Unity.Timeline.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.Purchasing.Codeless.Player.csproj">
+      <Project>{021DA6F7-0137-8EE1-D645-3AF39CF243D0}</Project>
+      <Name>UnityEngine.Purchasing.Codeless.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.Purchasing.SecurityCore.Player.csproj">
+      <Project>{9E74C7A6-1CD2-0B90-0CFC-AEE8000EB67D}</Project>
+      <Name>UnityEngine.Purchasing.SecurityCore.Player</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.XR.LegacyInputHelpers.Player.csproj">
       <Project>{8C458380-793E-0BED-91F7-B95550E740CD}</Project>
@@ -683,6 +724,10 @@
     <ProjectReference Include="Unity.Analytics.DataPrivacy.Player.csproj">
       <Project>{E4867A81-360A-39EE-4F4B-59F79193FEF8}</Project>
       <Name>Unity.Analytics.DataPrivacy.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.Purchasing.SecurityStub.Player.csproj">
+      <Project>{C787DA8D-E6F8-C214-E69A-F88F4CC011AC}</Project>
+      <Name>UnityEngine.Purchasing.SecurityStub.Player</Name>
     </ProjectReference>
     <ProjectReference Include="com.unity.multiplayer-hlapi.Runtime.Player.csproj">
       <Project>{4A5C6596-EB39-53BC-63EE-D2356DA60947}</Project>
