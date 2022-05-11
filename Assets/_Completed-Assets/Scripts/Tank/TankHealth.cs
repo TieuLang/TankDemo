@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 namespace Complete
 {
+    //public class MyFloatEvent : UnityEvent<float> { }
+
     public class TankHealth : MonoBehaviour
     {
         public float m_StartingHealth = 100f;               // The amount of health each tank starts with.
@@ -18,7 +21,6 @@ namespace Complete
         private float m_CurrentHealth;                      // How much health the tank currently has.
         private bool m_Dead;                                // Has the tank been reduced beyond zero health yet?
 
-
         private void Awake ()
         {
             // Instantiate the explosion prefab and get a reference to the particle system on it.
@@ -31,14 +33,13 @@ namespace Complete
             m_ExplosionParticles.gameObject.SetActive (false);
         }
 
-
         private void OnEnable()
         {
             // When the tank is enabled, reset the tank's health and whether or not it's dead.
             m_CurrentHealth = m_StartingHealth;
             m_Dead = false;
-
-            // Update the health slider's value and color.
+            
+            // Update the health s lider's value and color.
             SetHealthUI();
         }
 

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: af9eea1990df76d409a20d07038be8ce
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_TankHealthData: {fileID: 11400000, guid: c1b65001211f3694a8b6abe8bb7960b8, type: 2}
+  - m_TankHealthSound: {fileID: 11400000, guid: 1877a071255352d4a9b23ec1ecd1ffe7,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
